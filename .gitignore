@@ -1,0 +1,13 @@
+# 接続情報(Wi-Fi のパスワード、サーバーの接続先など)。git に入れない
+firmware/tbeam/include/secrets.h
+*.local
+.env
+
+# 取ってくるもの・作られるもの
+sdk/guide01/
+.pio/
+build/
+logs/
+.vscode/
+.DS_Store
+.claude/settings.local.json
