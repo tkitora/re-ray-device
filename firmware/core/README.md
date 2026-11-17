@@ -13,13 +13,21 @@
 | `reray/report_tracker.h` | 送ったものの状態(送信済み → 届いた / 送り直し / 届いていない) |
 | `reray/relay_scheduler.h` | 中継の予約(優先度つきの待ち時間、同じものを聞いたら取り消し) |
 | `reray/gateway.h` | 出口の処理。JSON に直す部分は、サーバーの方式(生のまま渡す)に合わせて作り直す予定 |
+| `reray/radio_config.h` | LoRa の周波数・帯域幅・SF の固定(決めた値以外はビルド失敗)、送信前の電波確認の判定 |
+| `reray/input.h` | 操作の種類。ボタン 3 つの読み方(チャタリング、離したときに出す、3 つ同時押し、決定の長押し)、タッチの読み方 |
+| `reray/text_layout.h` | 文字の折り返し(UTF-8。半角 = 1、全角 = 2 で数える) |
+| `reray/codes.h` | モードと、送れるものの一覧(定型信号、数量、方角) |
+| `reray/channels.h` | チャンネルの一覧と、届いたメッセージの置き場 |
+| `reray/ui.h` | 画面の状態遷移。操作を受けて、グラスに出す 4 行と、端末にしてほしい動作を決める |
 
-これから足すもの(`docs/DESIGN.md` §7.2): 操作、画面、折り返し、チャンネル、送るものの組み立て、JSON。
+これから足すもの(`docs/DESIGN.md` §7.2): MQTT の JSON の組み立てと読み取り。
 
 ## テスト
 
 ```bash
-make -C firmware/core test        # 474 項目(ASan + UBSan)
+make -C firmware/core test        # 1,732 項目(ASan + UBSan)
 make -C firmware/core json-check  # JSON の形を Python で確かめる
-make -C firmware/core guard-test  # 電波法のガードが、ビルドで拒否されることを確かめる
+make -C firmware/core guard-test  # 電波法のガード: 上限を超える出力や、決めていない周波数では、ビルドが失敗することを確かめる
 ```
+
+**注意:** ヘッダを書き換えた直後(同じ秒の中)に `make test` を続けて実行すると、`make` が「変わっていない」と判断して、前のプログラムを使い回すことがある。スクリプトから続けて実行するときは `make -B test`(必ず作り直す)を使う。
