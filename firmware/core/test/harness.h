@@ -16,3 +16,5 @@ extern int g_checks;
 
 void run_core_tests();
 void run_gateway_tests();
+void run_input_tests();
+void run_ui_tests();
