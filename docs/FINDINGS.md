@@ -9,7 +9,7 @@ T-Beam と GUIDE01 について、実際に動かして確かめたことの記�
 
 | 項目 | 内容 |
 |---|---|
-| 端末 | LILYGO T-Beam(2 台)。注文した版が「920Mhz MIC」かは**未確認** |
+| 端末 | LILYGO T-Beam(2 台)。注文した版は「920Mhz MIC」(リーダーが確認、2026-11-17) |
 | グラス | GUIDE01 1 台 |
 | PC | macOS(arm64)、PlatformIO Core 6.2.0、`espressif32 @ 6.13.0`(Arduino-ESP32 は `framework-arduinoespressif32 3.20017`) |
 | ライブラリ | RadioLib 7.8.1、TinyGPSPlus 1.0.2、XPowersLib 0.2.6、NimBLE-Arduino 1.4.3、PubSubClient 2.8 |
@@ -100,7 +100,7 @@ T-Beam と GUIDE01 について、実際に動かして確かめたことの記�
 
 ## 6. まだ確かめていないこと
 
-- 注文した T-Beam が「920Mhz MIC」の版か。基板の印字(V1.2)と技適の表示の目視。アンテナの種類
+- 基板の「V1.2」の印字(注文した版・技適の表示・アンテナは、リーダーが確認済み。`COMPLIANCE.md` §4)
 - LoRa の送信(電波法の確認が済むまで行わない。`docs/COMPLIANCE.md`)
 - GPS が屋外で位置を取れるか
 - Wi-Fi と MQTT、音声の録音、乾電池での動作
